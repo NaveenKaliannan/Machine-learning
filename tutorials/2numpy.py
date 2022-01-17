@@ -18,3 +18,11 @@ print(speed)
 ##ndarray - used as the primary container to exchange data between algorithms
 ## arrays can 1,2d, 3d or multi D
 ## array([5,7,8]), array([],[]) array([],[],[])
+
+first=np.array([1,2,3,4])
+print(first)
+#first row, second coloumn
+zeros=np.zeros((3,3))
+print(zeros)
+ones=np.ones((3,3))
+print(ones)
