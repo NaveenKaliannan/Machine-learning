@@ -89,6 +89,6 @@ print( dict((name, position) for position, name in enumerate(store)) )
 ##sorted function can sort numbers or letters
 ## reversed function reverse the dataset
 ## zip function pair the data elements, type will reuturn the type of dataset used 
-
+### Important zip function
 ## valueerror
 
