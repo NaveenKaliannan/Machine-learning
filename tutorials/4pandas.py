@@ -37,6 +37,17 @@
 import numpy as np
 import pandas as pd
 
+def movie_grade(rating):
+    if rating==5:
+        return 'A'
+    if rating==4:
+        return 'B'
+    if rating==3:
+        return 'C'
+    else:
+        return 'F'
+
+
 s=pd.Series(list('abcdef'))
 print(s) ## data alignment is done automatically
 
@@ -122,3 +133,32 @@ print(df_new)
 ## Data operations for faster data processing
 df_movie = pd.DataFrame({'movie 1': [5,4,3,3,2,1], 'movie 2': [4,5,2,3,4,2] }, index=['tom','jeff','peter','ram','ted','paul'])
 print(df_movie)
+print(df_movie.applymap(movie_grade))
+
+
+## with statistical functions
+df_test = pd.DataFrame({'test1':[95,84,73],'test2':[74,72,81]},index=['jack','nav','karth'])
+print(df_test)
+print(df_test.max())
+print(df_test.mean())
+print(df_test.std())
+
+
+## Data operations using groupby
+df_president = pd.DataFrame({'first':['george','bill'], 'last':['bush','clinton']})
+print(df_president)
+grouped=df_president.groupby('first')
+grp=grouped.get_group('george')
+print(grp)
+print(df_president.sort_values('first'))
+
+
+## Data standardization
+
+
+
+
+##File read and write opertations -csv, json, sql, excel, hdf, html and etc
+## read_excel, read_csv - to read a file
+## to_excel, to_csv = to write a file
+
