@@ -99,3 +99,10 @@ print( dict((name, position) for position, name in enumerate(store)) )
 ### Important zip function
 ## valueerror
 
+
+
+
+## important question: what happens
+list('kdskndks')
+tuple('kdskndks')
+
