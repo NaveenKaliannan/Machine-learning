@@ -91,6 +91,8 @@ print(df_olymbic)
 print(df_olymbic.host)
 print(df_olymbic.describe)
 
+## how to print the coloumns header in dataframe variable.coloumns.values
+
 
 ##data frame from dict 
 olymbic = {'london':{2012:205},'beigin':{2008:204}}
@@ -135,6 +137,7 @@ df_movie = pd.DataFrame({'movie 1': [5,4,3,3,2,1], 'movie 2': [4,5,2,3,4,2] }, i
 print(df_movie)
 print(df_movie.applymap(movie_grade))
 
+## df = pd.DataFrame([[np.nan, 2, np.nan, 0], [3, 4, np.nan, 1],  [np.nan, np.nan, np.nan, 5], [np.nan, 3, np.nan, 4]], columns=list("ABCD"))
 
 ## with statistical functions
 df_test = pd.DataFrame({'test1':[95,84,73],'test2':[74,72,81]},index=['jack','nav','karth'])
@@ -155,6 +158,16 @@ print(df_president.sort_values('first'))
 
 ## Data standardization
 
+
+
+## pandas data operation- merge, duplicate and concatentation
+## merge -  pd.merge(variable1, variable2), pd.merge(vairable1,varable2,on='student')
+## pd.merge(,,on='ID',how='left').fillna('x')
+
+##concat pd.concat([variable1,variable2], ignore_index=True)
+## dfnewdata.duplicated() - check for duplicate values
+## dfnewdata.drop_diplicates() drops duplicate values
+## dfnewdata.dro[ps_duplicates('ID') drops duplicted values by ID
 
 
 
