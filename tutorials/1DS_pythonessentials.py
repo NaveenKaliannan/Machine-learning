@@ -70,6 +70,13 @@ gdp=[2255.225482,629.9553062,11601.63022,25306.82494,27266.40335,19466.99052,588
 ## zipping using dictionary
 zusammen = dict(zip(country, gdp))
 
+### reversion dict
+    newdict={}
+    for keys,values in files.items():
+        newdict[values] = newdict.get(values,[])
+        newdict[values].append(keys)
+    print(newdict)
+    return None
 
 
 ## Data strucures: Set (unordered collections of unique elements)
