@@ -56,5 +56,8 @@
 ## features are always mapped as x and response is mapped as y
 
 
+##Linear regression is widely used approach approach in supervised learning models.
 
+## logistic regression is used for categorical data
+## what is difference between odds and probability. log of odds becomes the logarthimc. it switches categorical to linear regression
 
