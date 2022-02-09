@@ -25,3 +25,6 @@ knn.predict(xnew)
 logreg = LogisticRegression()
 logreg.fit(x_feature,y_target)
 print("predict = " ,logreg.predict(xnew))
+
+
+## https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn
