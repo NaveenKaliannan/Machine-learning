@@ -78,7 +78,7 @@ xnn.sort()
 
 ##2D plot
 plt.scatter(x['OOdistance'], y ,c='red', label='Actual')
-plt.plot(x1,y1,c='black', label='Linear regression')
+plt.plot(x1,y1,c='black', label='Multiple Linear regression')
 plt.plot(xnn,ynn, c='green', marker='o', label='Neural network')
 plt.legend(loc="upper left")
 #plt.title('Input (x) versus Output (y)')
