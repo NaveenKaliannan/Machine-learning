@@ -57,10 +57,10 @@ xknn.sort()
 ## ---- KNeighborsClassifier -----##
 
 
-df_error = pd.DataFrame({"OOdistance":np.array(xslice['OOdistance']), "Actual y":y_target[0:500:100], "MLR y":linreg.predict(xslice), "KNN y":knn.predict(xslice) })
-df_error['MLR error'] = df_error['Actual y'] - df_error['MLR y']
-df_error['KNN error'] = df_error['Actual y'] - df_error['KNN y']
-df_error.loc['total error'] = df_error[['MLR error','KNN error']].sum()
+df_error = pd.DataFrame({"O--O":np.array(xslice['OOdistance']), "y(actual)":y_target[0:500:100], "y(MLR)":linreg.predict(xslice), "y(KNN)":knn.predict(xslice) })
+df_error['bias(MLR)'] = df_error['y(actual)'] - df_error['y(MLR)']
+df_error['bias(KNN)'] = df_error['y(actual)'] - df_error['y(KNN)']
+df_error.loc['total error'] = df_error[['bias(MLR)','bias(KNN)']].mean()
 df_error.fillna('',inplace=True)
 print(df_error)
 
