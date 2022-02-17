@@ -37,7 +37,7 @@ y_target_round = [float(i) for i in y_target_round]
 linreg=LinearRegression()
 linreg.fit(x_feature,y_target)
 
-xslice=x[0:500:100]
+xslice=x_feature[0:500:100]
 ylinreg=linreg.predict(xslice) ## equivalent to the expression alpha+beta[0][0]*x1+beta[0][1]*x2
 
 xlinreg=np.array(xslice['OOdistance'])
