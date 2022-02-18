@@ -1,24 +1,34 @@
-##plot
-from mpl_toolkits import mplot3d
-from matplotlib import pyplot 
-import matplotlib.pyplot as plt
-
-##linear regression
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_boston
+from numpy import unique
+from numpy import where
+from matplotlib import pyplot
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
+
+# Converting a feature or target (yes or no) into numbers (1 or 0).
 from sklearn.linear_model  import LinearRegression
 from sklearn.model_selection import train_test_split
-
-##tensorflow
+import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
-import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import preprocessing
+# Converting a feature or target (yes or no) into numbers (1 or 0).
+#le = preprocessing.LabelEncoder()
+#features=le.fit_transform(features)
+from sklearn.linear_model  import LogisticRegression
+from sklearn.svm import SVR
+from sklearn.metrics import r2_score
+from sklearn.linear_model import BayesianRidge
 
-##3d plot
-from mpl_toolkits import mplot3d
+
+## useful python code:
+#y = [xf for _,xf in sorted(zip(x, y))]
+#x.sort()
+
 
 ## explanatory variables or features
 x=pd.DataFrame(
@@ -31,59 +41,94 @@ y=pd.DataFrame(
   {"hydrogenbondstrength":[-8.39084,-5.15736,-30.0507,-9.47462,-15.1347,-6.47587,-13.2604,-13.1133,-36.0654,-18.6279,-16.7918,-6.37431,-16.2805,-12.2691,-17.5547,-6.80172,-18.0682,-8.73322,-19.7488,-8.29111,-22.2187,-14.4159,-25.4086,-4.62937,-7.40775,-3.91978,-21.3801,-5.28439,-21.3309,-6.28107,-24.5513,-9.51618,-8.94626,-3.65051,-8.56598,-3.84045,-13.7383,-5.01884,-16.5164,-5.47887,-15.9512,-5.66782,-29.084,-9.58285,-13.0997,-7.32638,-18.4397,-7.3914,-26.4519,-5.58973,-24.6951,-7.09107,-25.0351,-2.79633,-15.6273,-5.98747,-20.1683,-3.57893,-21.4944,-16.2541,-17.8883,-16.9023,-42.3418,-15.4328,-53.8918,-4.31075,-6.594,-5.71948,-6.5357,-0.998637,-12.4002,-11.4154,-19.5332,-14.8477,-4.32398,-3.58084,-25.0445,-13.6229,-16.3677,-6.31691,-18.4334,-17.1118,-30.5508,-9.53353,-12.8957,-8.77708,-22.1768,-21.9337,-9.18627,-8.49513,-21.5347,-3.9197,-22.4331,-5.67651,-20.5863,-12.148,-14.2253,-11.8072,-6.60859,-2.81227,-18.1411,-3.43741,-11.6831,-4.1417,-16.6815,-2.68438,-14.6982,-6.76785,-19.8563,-9.96282,-8.33802,-5.73681,-16.8845,-9.69244,-32.545,-3.91834,-34.3203,-7.72062,-15.9134,-13.1407,-27.1225,-7.14722,-19.6884,-6.8339,-19.3978,-6.60432,-45.5162,-28.6485,-22.9101,-15.4384,-12.6067,-10.7234,-22.5155,-11.5605,-27.389,-13.0018,-13.7334,-8.43953,-12.5767,-8.06014,-16.8864,-11.0529,-23.1543,-18.2751,-12.2765,-9.98001,-28.1109,-3.32853,-20.0674,-9.94875,-37.4154,-18.834,-25.4602,-11.2576,-10.6333,-8.91972,-18.1585,-3.73464,-23.6807,-21.1592,-5.10893,-3.43379,-11.6696,-4.18273,-21.2662,-13.5066,-19.5496,-1.58879,-18.4336,-2.566,-9.59472,-2.00868,-28.1849,-6.57066,-14.9737,-11.5491,-15.8559,-11.9515,-15.2629,-5.87031,-22.4554,-2.46105,-11.1628,-9.17587,-18.2602,-11.0147,-43.7388,-3.75672,-13.1502,-9.55545,-19.6684,-14.0767,-33.9255,-24.4798,-30.2101,-11.7765,-17.5276,-4.72621,-16.3418,-15.5298,-16.2919,-12.0263,-5.75224,-5.72751,-16.0525,-5.1555,-17.5759,-12.7064,-21.4762,-8.72967,-27.7339,-3.29351,-15.0237,-10.6326,-24.8696,-7.07364,-19.7029,-3.14816,-10.5405,-7.36633,-8.61024,-2.63647,-20.9241,-8.48479,-25.1681,-2.15226,-24.2338,-9.513,-19.5002,-6.8213,-8.99149,-4.96697,-25.7644,-22.0494,-20.6938,-14.9729,-38.7232,-13.6582,-24.6486,-9.25024,-10.0359,-4.14873,-9.31607,-6.25459,-17.2392,-5.92875,-8.94582,-5.03659,-16.5563,-7.01951,-8.60296,-7.60071,-15.4692,-6.13069,-28.8711,-9.92481,-11.2024,-8.80302,-16.4676,-7.86681,-25.4252,-15.7871,-18.3048,-10.0896,-17.18,-9.55027,-11.82,-4.20045,-11.7972,-5.04777,-15.3038,-5.22147,-10.6876,-8.77485,-14.0544,-8.98839,-12.9947,-12.0268,-12.6218,-6.92108,-12.3011,-8.87276,-21.9572,-19.1784,-6.71795,-5.1361,-22.5035,-14.2276,-18.1689,-10.5248,-19.6438,-1.78418,-25.2279,-6.33869,-9.84887,-6.08262,-8.06027,-8.04478,-19.6512,-13.0076,-4.83504,-4.53868,-27.0496,-15.3732,-27.4189,-2.54391,-19.54,-7.3327,-22.1012,-20.251,-21.2696,-5.43632,-10.2208,-8.83735,-33.6709,-7.01875,-15.0888,-9.82404,-20.8249,-19.2249,-32.0841,-8.98913,-9.3456,-2.16203,-14.3575,-8.1994,-22.761,-10.8924,-17.7372,-7.7233,-27.168,-4.66148,-21.0154,-10.9485,-11.1774,-7.97089,-14.9658,-1.17258,-17.9058,-7.20523,-11.1598,-11.0837,-7.4434,-7.14483,-19.3591,-14.2106,-30.1943,-14.9249,-27.0588,-24.0715,-15.5288,-6.24411,-31.5294,-5.19343,-32.8261,-15.6947,-14.539,-10.5839,-17.5498,-9.8663,-10.0532,-2.42859,-26.5508,-23.8211,-19.9775,-8.34543,-12.0565,-8.505,-28.8128,-8.82874,-22.2384,-7.54743,-10.6641,-4.59748,-5.14597,-3.34769,-26.7099,-21.4421,-51.1977,-9.65113,-17.1575,-17.0281,-12.5456,-5.97791,-42.9009,-5.03084,-14.6657,-1.95192,-5.9571,-2.07019,-15.1986,-14.8576,-6.63461,-4.30983,-14.0256,-3.42282,-19.1242,-17.9056,-20.6923,-7.61657,-5.33376,-4.86113,-20.4653,-1.66465,-15.1813,-14.9948,-27.1827,-13.0528,-22.249,-6.50459,-6.02385,-5.45643,-16.4975,-3.29075,-15.041,-10.412,-20.6289,-16.3656,-21.0245,-11.1364,-25.6212,-5.35274,-12.2349,-10.9297,-35.1818,-9.84212,-11.5666,-8.02218,-16.9133,-5.47963,-7.7506,-5.66987,-15.8354,-11.2733,-18.0739,-2.86634,-7.20591,-6.15061,-21.6134,-12.5488,-11.2917,-6.09809,-16.3138,-4.39162,-30.5077,-16.3613,-23.4895,-8.4136,-8.42614,-6.76602,-15.3634,-11.2147,-7.94225,-6.87254,-13.7593,-12.4364,-13.3191,-8.47783,-26.6144,-13.2028,-15.8432,-13.6371,-16.8656,-13.5559,-11.1343,-10.6245,-40.6644,-3.62575,-13.7107,-4.41255,-15.6165,-14.054,-5.16285,-2.57421,-24.5687,-14.8598,-24.2363,-3.77919,-9.83396,-5.5324,-10.2399,-2.89666,-30.2145,-14.287,-16.0062,-9.64953,-19.6603,-4.6336,-52.5016,-28.6831,-34.3704,-11.4247,-13.8748,-6.63521,-8.54779,-3.53438,-25.7402,-7.90821,-19.3088]})
 
 
-## ---- Multiple linear regression -----##
-linreg=LinearRegression()
-linreg.fit(x,y)
+##test dataset
+actual=x
+actual = pd.concat( [actual, y], axis=1)
+actual.sort_values(["OOdistance"], inplace=True)
+actual = actual[1:500:10]
+xtest=pd.DataFrame(actual["OOdistance"])
+yactual= actual["hydrogenbondstrength"]
 
-## intercept and linear and non-linear coeffcients
-beta=linreg.coef_
-alpha=linreg.intercept_
-print("beta ", beta,  " alpha ", alpha)
+## Multiple linear regression
+model=LinearRegression()
+model.fit(x,y)
+beta=model.coef_
+alpha=model.intercept_
+y_linreg=model.predict(xtest) ## equivalent to the expression alpha+beta[0][0]*x1+beta[0][1]*x2
 
-x1=np.array(x['OOdistance'])
-y1=linreg.predict(x) ## equivalent to the expression alpha+beta[0][0]*x1+beta[0][1]*x2
-y1=y1[:,0]
-#z1=np.array(x['OH distance'])
-#z1 = [xf for _,xf in sorted(zip(x1, z1))]
-y1 = [xf for _,xf in sorted(zip(x1, y1))]
-x1.sort()
-## ---- Multiple linear regression -----##
-
-
-## ---- Neural network -----##
+##Sequntial Neural network
 scale_x = MinMaxScaler()
 xs = scale_x.fit_transform(x)
 scale_y = MinMaxScaler()
 ys = scale_y.fit_transform(y)
-
 model = Sequential()
 model.add(Dense(10, input_dim=1, activation='relu', kernel_initializer='he_uniform'))
 model.add(Dense(10, activation='relu', kernel_initializer='he_uniform'))
 model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam')
 model.fit(xs, ys, epochs=500, batch_size=10, verbose=0)
-yhat = model.predict(xs)
-
 x_plot = scale_x.inverse_transform(xs)
 y_plot = scale_y.inverse_transform(ys)
-yhat_plot = scale_y.inverse_transform(yhat)
-ynn=yhat_plot
 
-xnn=np.array(x['OOdistance'])
-##znn=np.array(x['OH distance'])
-##znn = [xf for _,xf in sorted(zip(xnn, znn))]
-ynn = [xf for _,xf in sorted(zip(xnn, ynn))]
-xnn.sort()
-## ---- Neural network -----##
+scale_xtest = MinMaxScaler()
+xstest = scale_xtest.fit_transform(xtest)
+y_snn = model.predict(xstest)
+y_snn = scale_y.inverse_transform(y_snn)
 
-##2D plot
-plt.scatter(x['OOdistance'], y ,c='red', label='Actual')
-plt.plot(x1,y1,c='black', label='Multiple Linear regression')
-plt.plot(xnn,ynn, c='green', marker='o', label='Neural network')
-plt.legend(loc="upper left")
-#plt.title('Input (x) versus Output (y)')
-plt.xlabel('O-O distance (angstrom)')
-plt.ylabel('HB strength (KJ per mol)')
+##K-Nearest neighbours
+y_for_knn=y
+y_for_knn = y_for_knn.to_numpy()
+y_for_knn = [float(round(i)) for i in np.ravel(y_for_knn)]
+model = KNeighborsClassifier(n_neighbors=2)
+model.fit(x,y_for_knn)
+y_knn = model.predict(xtest)
+
+##Logistic regression
+model = LogisticRegression()
+model.fit(x,y_for_knn)
+y_logistic = model.predict(xtest)
+
+##support vector machine
+model = SVR(kernel='rbf')
+model.fit(x,y)
+y_svr = model.predict(xtest)
+
+##Bayesian regression
+model = BayesianRidge()
+model.fit(x, y)
+y_bayes = model.predict(xtest)
+
+
+rw=2
+clm=3
+figno=[[i,j] for i in range(rw) for j in range(clm)]
+label=["Multiple linear regression", "Sequential Neural network", "K-Nearest Neighbor","Logistic regression", "Support Vector Machines (SVM)", "Bayesian Regression"]
+label2=["MLR", "SNN", "KNN","LR", "SVM", "BR"]
+yall=[[y_linreg], [y_snn], [y_knn],[y_logistic], [y_svr], [y_bayes]]
+
+
+##Error for all approaches
+df_error = actual
+for i in range(rw*clm):
+    df_error[label2[i]] = np.ravel(yall[i])
+    df_error[str("Bias")+str("(")+label2[i]+str(")")] = df_error[label2[i]] - df_error["hydrogenbondstrength"]
+   
+df_error.loc['total error'] = df_error[[ str("Bias")+str("(")+i+str(")")  for i in label2 ]].mean()  
+df_error.fillna('',inplace=True)
+print(df_error.loc['total error'])  
+ 
+
+##plotting for all approaches
+fig, axs = plt.subplots(rw, clm, figsize=(15,10), dpi=100)
+figure(figsize=(15,10), dpi=100 )
+for i in range(rw*clm):    
+    axs[figno[i][0], figno[i][1]].scatter(xtest, yactual, c="black", marker='+', label='Actual')    
+    axs[figno[i][0], figno[i][1]].scatter(xtest, yall[i], c="red",label='Predicted')
+    axs[figno[i][0], figno[i][1]].set_title(label[i])    
+    axs[figno[i][0], figno[i][1]].legend(loc="best")
+fig.text(0.5,0.04, "O-O distance (Angstrom)", ha="center", va="center")
+fig.text(0.05,0.5, "HB strength (KJ per mol)", ha="center", va="center", rotation=90)  
+fig.savefig("HBstrength.png", format="png")
 plt.show()
-
+plt.close()
 
