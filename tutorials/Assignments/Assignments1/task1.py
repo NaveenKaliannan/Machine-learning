@@ -19,6 +19,10 @@ from sklearn.metrics import silhouette_score
 from matplotlib import pyplot
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
+import warnings
+warnings.filterwarnings('ignore')
+warnings.simplefilter('ignore')
+
 
 def get_keys_from_value(d, val):
     return [k for k, v in d.items() if v == val]
@@ -76,7 +80,7 @@ clusters = unique(y)
 for cluster in clusters:
   index = where(y == cluster)
   axs[1].scatter(newdataset[index, 0],newdataset[index, 1],s=0.2)
-axs[1].set_xlabel('Time (days)')    
+axs[1].set_xlabel('Time (years)')    
 axs[1].set_ylabel('Volume (arb. unit)') 
 axs[1].set_title('K means cluster')
 
