@@ -3,6 +3,8 @@ import pandas as pd
 from matplotlib import pyplot
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
+warnings.filterwarnings('ignore')
+warnings.simplefilter('ignore')
 
 ## Zeroadder
 def zeroadder(x):
